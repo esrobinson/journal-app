@@ -1,7 +1,9 @@
 JournalApp.Routers.Posts = Backbone.Router.extend({
 
-  initialize: function($el){
-    this.$el = $el
+  initialize: function($content, $sidebar){
+    this.$content = $content;
+    this.$sidebar = $sidebar;
+    this.index();
   },
 
   routes: {
@@ -15,7 +17,7 @@ JournalApp.Routers.Posts = Backbone.Router.extend({
     posts.fetch({
       success: function(){
         view = new JournalApp.Views.PostsIndex({posts: posts});
-        router.$el.html(view.render().$el);
+        router.$sidebar.html(view.render().$el);
       }
     });
   },
@@ -27,7 +29,7 @@ JournalApp.Routers.Posts = Backbone.Router.extend({
         var post = posts.get(id);
         view = new JournalApp.Views.PostShow({post: post});
         form = new JournalApp.Views.PostForm({post :post});
-        router.$el.html(view.render().$el).append(form.render().$el);
+        router.$content.html(view.render().$el).append(form.render().$el);
       }
     });
   },
@@ -36,6 +38,6 @@ JournalApp.Routers.Posts = Backbone.Router.extend({
     var route = this;
     post = new JournalApp.Models.Post();
     view = new JournalApp.Views.PostForm({post: post});
-    router.$el.html(view.render().$el);
+    router.$content.html(view.render().$el);
   }
 });
