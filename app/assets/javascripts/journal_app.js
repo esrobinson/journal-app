@@ -12,7 +12,7 @@ window.JournalApp = {
     //     $("#content").append(view.render().$el);
     //   }
     // });
-    router = new JournalApp.Routers.Posts($('#content'));
+    router = new JournalApp.Routers.Posts($('#content'), $('#sidebar'));
 
     Backbone.history.start();
   }
