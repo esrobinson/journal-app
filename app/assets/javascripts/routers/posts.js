@@ -28,8 +28,7 @@ JournalApp.Routers.Posts = Backbone.Router.extend({
       success: function(){
         var post = posts.get(id);
         view = new JournalApp.Views.PostShow({post: post});
-        form = new JournalApp.Views.PostForm({post :post});
-        router.$content.html(view.render().$el).append(form.render().$el);
+        router.$content.html(view.render().$el);
       }
     });
   },

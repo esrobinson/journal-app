@@ -5,12 +5,8 @@ JournalApp.Views.PostsIndex = Backbone.View.extend({
   },
 
   initialize: function(options){
-    view = this;
     this.posts = options.posts;
-    this.listenTo(this.posts, 'add', view.refresh);
-    this.listenTo(this.posts, 'change: title', view.refresh);
-    this.listenTo(this.posts, 'remove', view.refresh);
-    this.listenTo(this.posts, 'reset', view.refresh);
+    this.listenTo(this.posts, 'add change:title remove reset', this.render);
   },
 
   template: JST["posts_index"],
@@ -26,12 +22,12 @@ JournalApp.Views.PostsIndex = Backbone.View.extend({
 
     var post = this.posts.get(id);
     post.destroy();
-  },
-
-  refresh: function(){
-    var view = this
-    this.posts.fetch({
-      success: view.render.bind(view)
-    });
   }
+  //
+  // refresh: function(){
+  //   var view = this
+  //   this.posts.fetch({
+  //     success: view.render.bind(view)
+  //   });
+  // }
 });
